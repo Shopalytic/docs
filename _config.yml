@@ -5,5 +5,5 @@ rdiscount extensions: [smart]
 pygments: true
 markdown: redcarpet2
 redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "tables"]
 exclude: ['Gemfile', 'Gemfile.lock', 'README.md']
