@@ -1,0 +1,50 @@
+# Logs #
+########
+*.log
+/tmp
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*    
+Berksfile.lock
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+.project
+.TemporaryItems*
+
+# Text editor temp files #
+##########################
+.*.sw[a-z]
+.#*
+*.tmpproj
+*~
+*#
+.#*
+\#*#
+*.un~
+
+# Vagrant status #
+##################
+.vagrant
+
+# build directories #
+#####################
+build/
+
+# Rails #
+#########
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+
+# Jekyll #
+/_site
