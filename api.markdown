@@ -10,4 +10,4 @@ permalink: api.html
 
 {{ api_methods | toc }}
 
-{{ api_methods | raw }}
+{{ api_methods }}
