@@ -1,1 +1,0 @@
-# Shopalytic Documentation

@@ -1,9 +1,0 @@
-auto: true
-server_port: 9292
-permalink: /:year/:month/:day/:title
-rdiscount extensions: [smart]
-pygments: true
-markdown: redcarpet2
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "tables"]
-exclude: ['Gemfile', 'Gemfile.lock', 'README.md']
