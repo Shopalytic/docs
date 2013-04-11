@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        API - 
+      
+      
+    </title>
+    
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link href="assets/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="assets/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href=""></a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                  
+                                        
+                         
+                                  
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <ul class="toc"><li><a href="#customer_register">customer_register</a></li><li><a href="#customer_update">customer_update</a></li><li><a href="#cart_add">cart_add</a></li><li><a href="#cart_modify">cart_modify</a></li><li><a href="#order">order</a></li></ul>
+
+<h2 id="customer_register">customer_register</h2>
+
+<p>Called directly after a customer registers for a new account</p>
+
+<pre>Required Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>email</code></td>
+<td>the email address of the customer. Email address must be unique. If another customer is registered with the same email address the event will be ignored.</td>
+<td>string</td>
+<td><a href="mailto:example@gmail.com">example@gmail.com</a></td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td>the first name of the customer</td>
+<td>string</td>
+<td>Mike</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>the last name of the customer</td>
+<td>string</td>
+<td>Smith</td>
+</tr>
+</tbody></table>
+
+<pre>Optional Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>join_date</code></td>
+<td>date and time the customer registered for the account. If no join_date is provided we will default to the current date and time. The timestamp should be the number of seconds after the UTC Unix epoch.</td>
+<td>timestamp</td>
+<td>1365698517</td>
+</tr>
+</tbody></table>
+
+<h2 id="customer_update">customer_update</h2>
+
+<p>Update the properties of a customer. Only the fields specified will be updated.</p>
+
+<pre>Optional Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>email</code></td>
+<td>the updated email address of the customer. If another customer is registered with the same email address the entire update event will be ignored.</td>
+<td>string</td>
+<td><a href="mailto:example123@gmail.com">example123@gmail.com</a></td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td>the updated first name of the customer</td>
+<td>string</td>
+<td>John</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>the updated last name of the customer</td>
+<td>string</td>
+<td>Doe</td>
+</tr>
+</tbody></table>
+
+<h2 id="cart_add">cart_add</h2>
+
+<p>Called after a customer adds an item to their shopping cart </p>
+
+<pre>Required Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>cart_id</code></td>
+<td>id that uniquely identifies the shopping cart. In most cases this will be a cart or order id generated by your commerce platform</td>
+<td>string</td>
+<td>123456</td>
+</tr>
+<tr>
+<td><code>sku</code></td>
+<td>the sku that identifies the product being added</td>
+<td>string</td>
+<td>tshirt-red</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>the cost of the product. This should be the price of a single quantity of the product and not the price multiplied by the quantity. Currency markings should be excluded.</td>
+<td>decimal</td>
+<td>20.99</td>
+</tr>
+<tr>
+<td><code>qty</code></td>
+<td>the quantity of the sku added to the cart</td>
+<td>int</td>
+<td>3</td>
+</tr>
+</tbody></table>
+
+<h2 id="cart_modify">cart_modify</h2>
+
+<p>Called when an item in the cart has been modified or deleted</p>
+
+<pre>Required Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>cart_id</code></td>
+<td>id that uniquely identifies the shopping cart</td>
+<td>string</td>
+<td>123456</td>
+</tr>
+<tr>
+<td><code>sku</code></td>
+<td>the sku that identifies the product being modified</td>
+<td>string</td>
+<td>tshirt-red</td>
+</tr>
+</tbody></table>
+
+<pre>Optional Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>qty</code></td>
+<td>the new quantity. If the original quantity was &quot;5&quot; and the updated quantity was set to &quot;7&quot;, <code>qty</code> would be set to &quot;7&quot;. Set the quantity to &quot;0&quot; if the item has been removed from the cart.</td>
+<td>int</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>the new price. Only needs to be set if the price of the sku has changed since it was originally added.</td>
+<td>decimal</td>
+<td>9.99</td>
+</tr>
+</tbody></table>
+
+<h2 id="order">order</h2>
+
+<p>Called after a customer successfully places an order</p>
+
+<pre>Required Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>order_id</code></td>
+<td>unique id used to identify the order. This is usually a cart or order id generated by your commerce platform.</td>
+<td>string</td>
+<td>123456</td>
+</tr>
+<tr>
+<td><code>cart_id</code></td>
+<td>id used to identify the shopping cart (see <a href="#cart_add">cart_add</a>. If you are importing records or not using the <a href="#cart_add">cart_add</a> functionality you can set the <code>cart_id</code> to the same value as <code>order_id</code>.</td>
+<td>string</td>
+<td>6789</td>
+</tr>
+<tr>
+<td><code>order_date</code></td>
+<td>date and time the order was placed</td>
+<td>timestamp</td>
+<td>1365698517</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>the total cost of the order including any tax, shipping and less any discounts</td>
+<td>decimal</td>
+<td>97.16</td>
+</tr>
+<tr>
+<td><code>subtotal</code></td>
+<td>the combined cost of all the products in the order. Excludes shipping, tax, and discounts</td>
+<td>decimal</td>
+<td>88.96</td>
+</tr>
+<tr>
+<td><code>line_items</code></td>
+<td>array of dictionaries that describe the products being purchased</td>
+<td>array of dict</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Required Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>sku</code>: code that uniquely identifies the product</td>
+<td>string</td>
+<td>hat-yellow</td>
+</tr>
+<tr>
+<td></td>
+<td><code>price</code>: the cost of a single quantity of the product</td>
+<td>decimal</td>
+<td>9.99</td>
+</tr>
+<tr>
+<td></td>
+<td><code>qty</code>: the quantity of the product being ordered</td>
+<td>int</td>
+<td>3</td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Optional Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cost</code>: the businesses cost to sell a single quantity of this product</td>
+<td>decimal</td>
+<td>6.5</td>
+</tr>
+</tbody></table>
+
+<pre>Optional Parameters</pre> 
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>billing</code></td>
+<td>dictionary with details about the billing location</td>
+<td>dictionary</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Required Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>city</code>: of the person being billed</td>
+<td>string</td>
+<td>New York</td>
+</tr>
+<tr>
+<td></td>
+<td><code>zipcode</code>: of the person being billed. For US zipcodes use the 5 digit code.</td>
+<td>string</td>
+<td>10016</td>
+</tr>
+<tr>
+<td></td>
+<td><code>country</code>: of the person being billed. Use the 3 letter country code.</td>
+<td>string</td>
+<td>USA</td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Optional Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>state</code>: of the person being billed. Not required for US addresses.</td>
+<td>string</td>
+<td>New York</td>
+</tr>
+<tr>
+<td><code>shipping</code></td>
+<td>dictionary with details about the shipping location</td>
+<td>dictionary</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Required Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>city</code>: of where the order is shipping to</td>
+<td>string</td>
+<td>New York</td>
+</tr>
+<tr>
+<td></td>
+<td><code>zipcode</code>: of where the order is shipping to. For US zipcodes use the 5 digit code.</td>
+<td>string</td>
+<td>10016</td>
+</tr>
+<tr>
+<td></td>
+<td><code>country</code>: of where the order is shipping to. Use the 3 letter country code.</td>
+<td>string</td>
+<td>USA</td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Optional Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>state</code>: of where the order is shipping to. Not required for US addresses.</td>
+<td>string</td>
+<td>New York</td>
+</tr>
+<tr>
+<td><code>total_tax</code></td>
+<td>the cost of tax for the order</td>
+<td>decimal</td>
+<td>3.87</td>
+</tr>
+<tr>
+<td><code>total_shipping</code></td>
+<td>the of shipping the order</td>
+<td>decimal</td>
+<td>9.99</td>
+</tr>
+<tr>
+<td><code>payment_type</code></td>
+<td>the method used to pay for the order. This field is free form and can take any payment method you specify. A few examples are: visa, amex, paypal, google checkout or, site credit. You could also take a more generic approach and use credit card, cash, or check. The more specific the better analysis we can provide.</td>
+<td>string</td>
+<td>visa</td>
+</tr>
+<tr>
+<td><code>discounts</code></td>
+<td>array of dictionaries listing any discounts applied to the order. In the case where there are dynamic coupon codes that can only be used once, we suggest setting the <code>code</code> to the name of the group of coupons.</td>
+<td>array of dict</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><pre>Required Parameters</pre></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>code</code>: the code that identifies the coupon</td>
+<td>string</td>
+<td>FREE-SHIPPING</td>
+</tr>
+<tr>
+<td></td>
+<td><code>value</code>: the value this code has on the order. For example if an order was $50 and the discount code took 10% off the subtotal, then <code>value</code> would be 5.</td>
+<td>decimal</td>
+<td>5</td>
+</tr>
+</tbody></table>
+
+      </div>
+
+      <footer>
+        <p>&copy; 2013 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

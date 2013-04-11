@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        How it works - 
+      
+      
+    </title>
+    
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link href="assets/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="assets/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href=""></a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                  
+                                        
+                         
+                                  
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <p>Sending data to Shopalytic is easy. We&#39;ve already identified the most interesting events to collect and pre-defined the properties you need to send. For example, events such as when a customer registers for an account, places an order, or receives a shipment. What we need from you is to place calls for those events in all the appropriate places.  There may be times where some of the properties we are asking for aren&#39;t available. In those cases we&#39;ve made certain properties optional and you only need to track the events you&#39;re interested in. But the more you send us the better analysis we can provide.</p>
+
+<p>After the Shopalytic Javascript tag has been installed we will begin to automatically start tracking and collecting basic usage data about your customers. Each customer will be assigned a unique tracking id which we store in a cookie and will use to identify the actions they take while using your product.  If your commerce platform has a mechanism for uniquely identifying customers, such as email address or user id we suggest you use the <code>identify</code> method. This will enable us to track customers across devices (iPad, iPhone, Web, etc.) and give you a reference point to look up specific customers. Without the <code>identify</code> method there&#39;s a risk that we accidentally consider a single customer two or more different customers. There&#39;s more information about the <code>identify</code> method below.</p>
+
+<p>All tracking of events use the <code>track</code> method. The first argument is always an event type, such as <code>customer_register</code> or <code>order</code>. The second parameter contains properties that describe the event. Such as information about the products a customer ordered or the date a shipment was delivered. Each event has a different properties which are outlined in detail below.</p>
+
+<p>All customers who visit your product are automatically assigned a unique tracking id by Shopalytic. The <code>identify</code> method lets us persistently identify customers across multiple platforms (iPhone, iPad, Web, etc.) and allows us to provide features that enable you to view reports about specific customers. If your commerce platform assigns a unique identifier, such as a user id you can use that to tell us who a customer is. We require that an identity be unique and only belong to a single customer. When you call <code>identify</code> we will create an alias that references the id we automatically assigned the customer. We suggest calling the <code>identity</code> method on every request so we can ensure we know exactly who we are collecting data about.     </p>
+
+      </div>
+
+      <footer>
+        <p>&copy; 2013 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
