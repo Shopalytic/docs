@@ -33,10 +33,6 @@ Thumbs.db
 ##################
 .vagrant
 
-# build directories #
-#####################
-build/
-
 # Rails #
 #########
 
@@ -48,3 +44,4 @@ build/
 
 # Jekyll #
 /_cache
+/_site
