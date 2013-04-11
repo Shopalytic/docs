@@ -4,10 +4,4 @@ title: Shopalytic Documentation
 permalink: index.html
 ---   
 
-Welcome `test`
-
-```ruby
-def etet()
-
-end
-```
+[How it works](how_it_works.html)
