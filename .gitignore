@@ -47,5 +47,4 @@ build/
 /log/*.log
 
 # Jekyll #
-/_site
 /_cache
