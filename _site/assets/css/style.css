@@ -366,3 +366,7 @@ div.sidebar section img.icon {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
+
+.carriers strong {
+    color: #006D8F;
+}

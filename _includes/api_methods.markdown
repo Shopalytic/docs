@@ -36,6 +36,11 @@ Called after a customer adds an item to their shopping cart
 `price` | the cost of the product. This should be the price of a single quantity of the product and not the price multiplied by the quantity. Currency markings should be excluded. | decimal | 20.99
 `qty` | the quantity of the sku added to the cart | int | 3
 
+<pre>Optional Parameters</pre>
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---   
+`modified_date` | the date and time the product was added to the cart. The timestamp should be the number of seconds after the UTC Unix epoch. If a `modified_date` is not supplied we will default to the time the event was called. | timestamp | 1365698517
+
 
 <h2 id="cart_modify">cart_modify</h2>
 Called when an item in the cart has been modified or deleted
@@ -51,6 +56,7 @@ Called when an item in the cart has been modified or deleted
 --- | --- | --- | ---
 `qty` | the new quantity. If the original quantity was "5" and the updated quantity was set to "7", `qty` would be set to "7". Set the quantity to "0" if the item has been removed from the cart. | int | 7
 `price` | the new price. Only needs to be set if the price of the sku has changed since it was originally added. | decimal | 9.99
+`modified_date` | the date and time the cart item was modified. The timestamp should be the number of seconds after the UTC Unix epoch. If a `modified_date` is not supplied we will default to the time the event was called. | timestamp | 1365698517
 
 
 <h2 id="order">order</h2>
@@ -96,3 +102,130 @@ Called after a customer successfully places an order
  | <pre>Required Parameters</pre>
  | `code`: the code that identifies the coupon | string | FREE-SHIPPING
  | `value`: the value this code has on the order. For example if an order was $50 and the discount code took 10% off the subtotal, then `value` would be 5. | decimal | 5
+
+
+
+ <h2 id="refund">refund</h2>
+Called when an order is partially or fully refunded. If the order is being fully refunded the only required fields are `order_id` and `partial` (set to false).
+
+<pre>Required Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---  
+`order_id` | the order id to refund | string | 123456
+`partial` | whether the refund is for the full or a partial amount, When refunding the entire order set to false. The only other required field when doing a full refund is `order_id`. | bool | true
+`refund_total` | the total amount being refunded, including the refunded amounts for subtotal, tax, shipping and discounts. | decimal | 59.04
+`subtotal_refund` | the sum of the line items being refunded. The subtotal should exclude tax, shipping, and discounts. If there are no line items being returned the `subtotal_refund` should be set to 0. | decimal | 20.99
+`line_items` | the product being returned | array of dict
+ | <pre>Required Parameters</pre>
+ | `sku`: the sku of the product being returned | string | tshirt-red
+ | `price`: the price being returned for a single quantity of the product | decimal | 9.99
+ | `qty`: the quantity of this product being returned | int | 3
+
+<pre>Optional Parameters</pre>
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---  
+`tax_refund` | the amount of tax being refunded | decimal | 5.46
+`shipping_refund` | the amount of shipping being refunded | decimal | 9.99
+`discount_refund` | the amount of discount being refunded | decimal | 15.50
+
+
+UPS
+USPS
+FedEx
+Canada Post
+New Zealand Post
+
+
+<h2 id="shipment">shipment</h2>
+Called once shipping and tracking details for an order become available. If the order is broken up into multiple shipments you will need to call `shipment` once for each shipment.
+
+
+<pre>Required Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---  
+`order_id` | the order id of the shipment | string | 123456
+`shipment_id` | the internal shipment id your commerce platform assigned to the shipment. The `shipment_id` must be a unique id that no other order has previously used. If your commerce platform doesn't generate a shipment id automatically, you can use the order id as a replacement for a shipment id. If your order ships in multiple shipments, we suggest incrementing a counter for each shipment. For example the first shipment could be [order_id]_1 and the second [order_id]_2. | string | 12345_1
+`carrier` | the carrier code from the [Shipping Carrier Codes](#carriers) table. The table will indicate which carriers we support. Based on the carrier and tracking number we will automatically monitor the shipment and pull data about the shipment sent and delivery dates. The carrier code table will indicate which carriers we supposed automated monitoring for. In the future we will add additional carriers and automated data population. If you wish to use a carrier that we don't yet support, you should specify *custom* as your carrier code. | carrier | fedex
+
+<pre>Optional Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---  
+`tracking_number` | the tracking number assigned by the shipping carrier | string | 1Z 999 AA1 01 2345 6784
+`date_shipped` | the date the order shipped. If you're using a carrier code that supports automated data population (see: [Shipping Carrier Codes](#carriers)) then you should omit this field. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
+`date_delivered` | the date the shipment was delivered. If you're using a carrier code that supports automated data population (see: [Shipping Carrier Codes](#carriers)) then you should omit this field. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
+
+{% capture shipping %}
+The carriers that are __colored__ are carriers we automatically pull and monitor shipping data for. We will be adding support for additional automated carrier tracking in the future.
+
+*Name* | *code* | *name* | *code*
+--- | --- | --- | ---
+DHL | dhl | __FedEx__ | fedex
+__UPS__ | ups | __USPS__ | usps
+ | | | |
+ | | | |
+ | | | |
+A1 International | a1int | Aramex | aramex
+Australia Post | australia-post | __Canada Post__ | canpost
+Ceva | ceva | China Post | china-post
+City Link | city-link | DHL Germany | dhl-germany
+DHL Global Mail | dhl-global | DHL UK Domestic | dhl-uk
+DPD | dpd | Dynamex | dynamex
+EMS | ems | Ensenda | ensenda
+FedEx SmartPost | fedexsp | Golden State Overnight | golden-state
+Home Delivery Network | home-del | Hong Kong Post | hk-post
+India Post | india-post | Japan Post | japan-post
+Laser Ship | laser-ship | Mail Express | mail-exp
+__New Zealand Post__ | newzealand-post | OSM Worldwide | osm
+OnTrac | ontrac | ParcelForce | parcelforce
+Post Denmark | post-denmark | Posten Norway | posten-norway
+Posten Sweden | posten-sweden | Pretige | pretige
+Purolator | purolator | Spee-dee Delivery | spee-dee
+Streamlite | streamlite | TNT | tnt
+Thailand Post | thai-post | Toll Global | toll
+UPS MailInnovations | upsmi | YRC | YRC
+    
+{% endcapture %}
+
+<pre id="carriers">Shipping Carrier Codes</pre> 
+<div class="carriers" style="width: 150px; display: inline">
+{{ shipping | markdownify }}
+</div>
+
+
+<h2 id="shipment_delivered">shipment_delivered</h2>
+Called to update a shipment with a delivery date and time. If you're using a carrier code that supports automated data population (see: [Shipping Carrier Codes](#carriers)) then you don't need to call `shipment_delivered`.
+
+<pre>Required Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---    
+`order_id` | the order if of the shipment | string | 12345
+`shipment_id` | the shipment id | string | 12345_1
+`date_delivered` | the date the shipment was delivered. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
+
+
+<h2 id="product_view">product_view</h2>
+Called anytime a customer views a product page.
+
+<pre>Required Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---         
+`sku` | the unique code that identifies the product | string | tshirt-red
+`name` | the name of the product | string | This is a red shirt
+`price` | the price of the product | decimal | 29.99
+`logged_in` | whether the customer is logged in or not | bool | true
+
+<pre>Optional Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---         
+`categories` | an array of product categories | array | ['shirts', 'apparel']
+
+
+<h2 id="page_view">page_view</h2>
+Called on each page view.
+
+<pre>Required Parameters</pre> 
+*Parameter* | *Description* | *Type* | *Example*
+--- | --- | --- | ---         
+`url` | the URL of the page being requested | string | http://www.example.com/product/x.html
+`referrer` | the URL the page was referrer by | string | http://www.google.com
+`logged_in` | whether the customer is logged in or not | bool | true
