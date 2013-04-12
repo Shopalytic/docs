@@ -96,6 +96,3 @@ Called after a customer successfully places an order
  | <pre>Required Parameters</pre>
  | `code`: the code that identifies the coupon | string | FREE-SHIPPING
  | `value`: the value this code has on the order. For example if an order was $50 and the discount code took 10% off the subtotal, then `value` would be 5. | decimal | 5
-
-
- weeee
