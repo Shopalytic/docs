@@ -115,6 +115,24 @@ table td pre {
   padding: 12px 10px 8px;
 }
 
+.content {
+    margin-top: 40px;
+    margin: 40px 0 20px 250px;
+}
+
+#side_bar {
+    width: 200px;
+    margin-top: 40px;
+}
+#side_bar a {
+    width: 125px;
+    display: block;
+}
+#side_bar.affix {
+    margin-top: 0;
+    top: 20px;
+}
+
 .container > footer {
   margin-top: 20px;
   clear: both;
