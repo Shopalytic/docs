@@ -30,5 +30,7 @@ task :publish do
 
   puts 'Deploying to github pages'
   system 'git push upstream gh-pages'
+
   system 'git checkout source'
+  system 'git push upstream source'
 end
