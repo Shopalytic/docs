@@ -8,4 +8,4 @@ Welcome! If this is your first time we suggest starting with the [how it works](
 
 [Methods](methods.html) - Details about the purpose and how to use the various methods available in our client libraries.
 
-[Tracking Events](events.html) - The core of the Shopalytic system revolves around the concept of event tracking. The tracking events dections will prodive a list of available events and the properties available to each.
+[Tracking Events](events.html) - The core of the Shopalytic system revolves around the concept of event tracking. The tracking events sections will prodive a list of available events and the properties available to each.

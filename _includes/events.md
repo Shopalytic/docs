@@ -226,6 +226,6 @@ Called on each page view.
 <pre>Required Parameters</pre> 
 *Parameter* | *Description* | *Type* | *Example*
 --- | --- | --- | ---         
-`url` | the URL of the page being requested | string | http://www.example.com/product/x.html
+`url` | the URL of the page being requested. Send the raw URL as you received it, you shouldn't strip anything out. | string | http://www.example.com/product/x.html
 `referrer` | the URL the page was referrer by | string | http://www.google.com
 `logged_in` | whether the customer is logged in or not | bool | true
