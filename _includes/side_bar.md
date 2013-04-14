@@ -1,8 +1,8 @@
 <div id="side_bar" class="span3 affix" data-spy="affix" data-offset-top="75">
   <strong>Getting Started</strong>
   <ul class="nav nav-list">
-    <li><a href="#how_it_works">How It Works</a></li>
-    <li><a href="#methods">Methods</a></li>
+    <li><a href="how_it_works.html">How It Works</a></li>
+    <li><a href="methods.html">Methods</a></li>
     {% if page.url != '/events.html' %}
       <li><a href="/events.html">Tracking Events</a></li>
     {% endif %}
