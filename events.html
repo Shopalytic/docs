@@ -25,7 +25,7 @@
   </head>
 
   <body>
-    <div class="navbar">
+    <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
           <a href="/"><img src="/assets//images/shopaltyic_docs_logo.png" /></a>
@@ -35,10 +35,40 @@
     </div>
 
     <div class="container">
-      <div class="content">
-        <ul class="toc"><li><a href="#customer_register">customer_register</a></li><li><a href="#customer_update">customer_update</a></li><li><a href="#cart_add">cart_add</a></li><li><a href="#cart_modify">cart_modify</a></li><li><a href="#order">order</a></li><li><a href="#refund">refund</a></li><li><a href="#shipment">shipment</a></li><li><a href="#shipment_delivered">shipment_delivered</a></li><li><a href="#product_view">product_view</a></li><li><a href="#page_view">page_view</a></li></ul>
+      <div id="side_bar" class="span3 affix" data-spy="affix" data-offset-top="75">
+  <strong>Getting Started</strong>
+  <ul class="nav nav-list">
+    <li><a href="how_it_works.html">How It Works</a></li>
+    <li><a href="methods.html">Methods</a></li>
+    
+  </ul>    
+  <br />
 
-<h2 id="customer_register">customer_register</h2>
+   
+  <strong>Tracking Events</strong>
+       
+    <ul class="nav nav-list toc"><li><a href="events.html#customer_register">customer_register</a></li><li><a href="events.html#customer_update">customer_update</a></li><li><a href="events.html#cart_add">cart_add</a></li><li><a href="events.html#cart_modify">cart_modify</a></li><li><a href="events.html#order">order</a></li><li><a href="events.html#refund">refund</a></li><li><a href="events.html#shipment">shipment</a></li><li><a href="events.html#shipment_delivered">shipment_delivered</a></li><li><a href="events.html#product_view">product_view</a></li><li><a href="events.html#page_view">page_view</a></li></ul>  
+    <br />
+    
+
+  <strong>Client Libraries</strong>
+  <ul class="nav nav-list">
+    <li><a href="/lib/magento.html">Magento</a></li>
+    <li><a href="/lib/ruby.html">Ruby</a></li>
+    <li><a href="/lib/php.html">PHP</a></li>
+  </ul>
+
+  <br />
+
+</div> <!-- / #side_bar --> 
+
+
+      <div class="content">
+        
+        <h1>Tracking Events</h1>
+          
+
+        <h2 id="customer_register">customer_register</h2>
 
 <p>Called directly after a customer registers for a new account</p>
 

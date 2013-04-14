@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>
       
-        Shopalytic Documentation - 
+        Methods - 
       
       Shopalytic
     </title>
@@ -62,14 +62,18 @@
 
       <div class="content">
         
-        <h1>Shopalytic Documentation</h1>
+        <h1>Methods</h1>
           
 
-        <p>Welcome! If this is your first time we suggest starting with the <a href="how_it_works.html">how it works</a> page. It will provide a brief introduction to Shopalytic and the basics of our integration and tracking.</p>
+        <h2 id="identify">identify</h2>
 
-<p><a href="methods.html">Methods</a> - Details about the purpose and how to use the various methods available in our client libraries.</p>
+<p>Anytime a user visits your product Shopalytic will automatically assign them a unique tracking id. We use this id to track the pages they visits and the events they take. The <code>identify</code> method lets us persistently identify customers across multiple platforms (iPhone, iPad, Web, etc.) and enables you to report on customers by an identifier that makes sense to you.</p>
 
-<p><a href="events.html">Tracking Events</a> - The core of the Shopalytic system revolves around the concept of event tracking. The tracking events dections will prodive a list of available events and the properties available to each.</p>
+<p>If your commerce platform assigns a unique identifier, such as a user id you can use that to tell us who the customer is. We require that an identity be unique and only belong to a single user. We suggest that you call the <code>identity</code> method on all logged in pages. This will ensure that we know exactly who we are collecting data about.</p>
+
+<h2 id="track">track</h2>
+
+<p>The track method is the method used to send event data to Shopalytic. <code>track</code> always take two arguments. The first is an event type, such as &quot;order&quot; or &quot;customer_register&quot;. The second argument are the properties that describe the event taken. You can get a full list of the event types and the properties on the <a href="/events.html">Tracking Events</a> page.</p>
 
       </div>
 
