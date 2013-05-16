@@ -98,8 +98,8 @@ Called after a customer successfully places an order
 `total_tax` | the cost of tax for the order | decimal | 3.87
 `total_shipping` | the cost of shipping the order | decimal | 9.99
 `payment_type` | the method used to pay for the order. This field is free form and can take any payment method you specify. A few examples are: visa, amex, paypal, google checkout or, site credit. You could also take a more generic approach and use credit card, cash, or check. The more specific the better analysis we can provide. | string |visa
-`discounts` | array of dictionaries listing any discounts applied to the order. In the case where there are dynamic coupon codes that can only be used once, we suggest setting the `code` to the name of the group of coupons. `total_discounts` must be set when using `discounts`. | array of dict
-`total_discounts` | the sum of all the discounts applied to the order. Must be set in conjunction with `discounts`. | decimal | 12.50
+`discounts` | array of dictionaries listing any discounts applied to the order. In the case where there are dynamic coupon codes that can only be used once, we suggest setting the `code` to the name of the group of coupons. `total_discount` must be set when using `discounts`. | array of dict
+`total_discount` | the sum of all the discounts applied to the order. Must be set in conjunction with `discounts`. | decimal | 12.50
  | <pre>Required Parameters</pre>
  | `code`: the code that identifies the coupon | string | FREE-SHIPPING
  | `value`: the value this code has on the order. For example if an order was $50 and the discount code took 10% off the subtotal, then `value` would be 5. | decimal | 5
@@ -130,15 +130,9 @@ Called when an order is partially or fully refunded. If the order is being fully
 `discount_refund` | the amount of discount being refunded | decimal | 15.50
 
 
-UPS
-USPS
-FedEx
-Canada Post
-New Zealand Post
-
 
 <h2 id="shipment">shipment</h2>
-Called once shipping and tracking details for an order become available. If the order is broken up into multiple shipments you will need to call `shipment` once for each shipment.
+Called once shipping and tracking details for an order become available. If the order is broken up into multiple shipments you will need to call `shipment` once for each shipment. If you use one of our supported [Shipping Carrier Codes](#carriers) we will automatically populate the shipment sent and delivery times (you wont need to call `shipment_update` or set the `date_shipped` / `date_delivered`). 
 
 
 <pre>Required Parameters</pre> 
@@ -146,44 +140,42 @@ Called once shipping and tracking details for an order become available. If the 
 --- | --- | --- | ---  
 `order_id` | the order id of the shipment | string | 123456
 `shipment_id` | the internal shipment id your commerce platform assigned to the shipment. The `shipment_id` must be a unique id that no other order has previously used. If your commerce platform doesn't generate a shipment id automatically, you can use the order id as a replacement for a shipment id. If your order ships in multiple shipments, we suggest incrementing a counter for each shipment. For example the first shipment could be [order_id]_1 and the second [order_id]_2. | string | 12345_1
-`carrier` | the carrier code from the [Shipping Carrier Codes](#carriers) table. The table will indicate which carriers we support. Based on the carrier and tracking number we will automatically monitor the shipment and pull data about the shipment sent and delivery dates. The carrier code table will indicate which carriers we supposed automated monitoring for. In the future we will add additional carriers and automated data population. If you wish to use a carrier that we don't yet support, you should specify *custom* as your carrier code. | carrier | fedex
+`carrier` | the carrier code from the [Shipping Carrier Codes](#carriers) table. If you want to use a carrier that we don't support, you should specify *custom* as your carrier code. | carrier | fedex
 
 <pre>Optional Parameters</pre> 
 *Parameter* | *Description* | *Type* | *Example*
 --- | --- | --- | ---  
 `tracking_number` | the tracking number assigned by the shipping carrier | string | 1Z 999 AA1 01 2345 6784
-`date_shipped` | the date the order shipped. If you're using a carrier code that supports automated data population (see: [Shipping Carrier Codes](#carriers)) then you should omit this field. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
-`date_delivered` | the date the shipment was delivered. If you're using a carrier code that supports automated data population (see: [Shipping Carrier Codes](#carriers)) then you should omit this field. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
+`date_shipped` | the date the order shipped. If you're using a non customer carrier code then you should omit this field. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
+`date_delivered` | the date the shipment was delivered. If you're using a non custom carrier code then you should omit this field. The timestamp should be the number of seconds after the UTC Unix epoch. | timestamp | 1365698517
 
 {% capture shipping %}
-The carriers that are __colored__ are carriers we automatically pull and monitor shipping data for. We will be adding support for additional automated carrier tracking in the future.
 
 *Name* | *code* | *name* | *code*
 --- | --- | --- | ---
-DHL | dhl | __FedEx__ | fedex
-__UPS__ | ups | __USPS__ | usps
- | | | |
- | | | |
- | | | |
-A1 International | a1int | Aramex | aramex
-Australia Post | australia-post | __Canada Post__ | canpost
-Ceva | ceva | China Post | china-post
-City Link | city-link | DHL Germany | dhl-germany
-DHL Global Mail | dhl-global | DHL UK Domestic | dhl-uk
-DPD | dpd | Dynamex | dynamex
-EMS | ems | Ensenda | ensenda
-FedEx SmartPost | fedexsp | Golden State Overnight | golden-state
-Home Delivery Network | home-del | Hong Kong Post | hk-post
-India Post | india-post | Japan Post | japan-post
-Laser Ship | laser-ship | Mail Express | mail-exp
-__New Zealand Post__ | newzealand-post | OSM Worldwide | osm
-OnTrac | ontrac | ParcelForce | parcelforce
-Post Denmark | post-denmark | Posten Norway | posten-norway
-Posten Sweden | posten-sweden | Pretige | pretige
-Purolator | purolator | Spee-dee Delivery | spee-dee
-Streamlite | streamlite | TNT | tnt
-Thailand Post | thai-post | Toll Global | toll
-UPS MailInnovations | upsmi | YRC | YRC
+Aramex | aramex | Argentina OCA E-Pak | oca-ar
+Australia Post | australia-post | Brazil Correios | brazil-correios
+Canada Post | canada-post | China EMS | china-ems
+Correos de España | spain-correos-es | DHL Germany | dhl-germany
+DHL Global Mail | dhl-global-mail | DHL Netherlands | dhl-nl
+DHL Poland | dhl-poland | DHL | dhl
+DPD | dpd | Danmark Post | danmark-post
+Fedex UK | fedex-uk | Fedex | fedex
+Flash Courier | flash-courier | Hong Kong Post | hong-kong-post
+India Post | india-post | International Seur | international-seur
+Israel Post | israel-post | Korea Post | korea-post
+La Poste Colissimo | la-poste-colissimo | Malaysia Post | malaysia-post
+OPEK | opek | OnTrac | ontrac
+Parcel Force | parcel-force | Portugal CTT | portugal-ctt
+Portugal Seur | portugal-seur | Purolator | purolator
+Royal Mail | royal-mail | Russian Post | russian-post
+S.F. Express | sf-express | Saudi Post | saudi-post
+Singapore Post | singapore-post | Singapore Speedpost | singapore-speedpost
+Siodemka | siodemka | Spanish Seur | spanish-seur
+Star Track Australia | star-track | Swiss Post | swiss-post
+TAQBIN Hong Kong | taqbin-hk | TAQBIN Singapore | taqbin-sg
+TNT | tnt | Thailand Thai Post | thailand-post
+UPS | ups | USPS | usps
     
 {% endcapture %}
 
@@ -191,6 +183,9 @@ UPS MailInnovations | upsmi | YRC | YRC
 <div class="carriers" style="width: 150px; display: inline">
 {{ shipping | markdownify }}
 </div>
+
+<br />
+Shipping data powered by [![Aftership](/assets/images/aftership_logo.png)](http://www.aftership.com)
 
 
 <h2 id="shipment_update">shipment_update</h2>

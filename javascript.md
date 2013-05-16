@@ -19,7 +19,7 @@ Include the following javascript tag in the head of your page. Our libraries are
     b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a
     ,b)})(window.shopalytic||[]);
 
-    shopalytic.init(/* Project Token */, { ... /* Options */ });
+    shopalytic.init(/* Project Token */, { /* Options */ });
     shopalytic.track('page_view');
   </script>
 
