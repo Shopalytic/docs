@@ -17,18 +17,18 @@
     <![endif]-->
 
 
-    <link href="/assets//bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets//bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
-    <link href="/assets//css/pygments.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/assets//css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
-    <link href="/assets//css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link href="/assets/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
   </head>
 
   <body>
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <a href="/"><img src="/assets//images/shopaltyic_docs_logo.png" /></a>
+          <a href="/"><img src="/assets/images/shopaltyic_docs_logo.png" /></a>
           <span class="pull-right back_home"><a href="http://www.shopalytic.com/">Back to Shopalytic ></a></span>
         </div>
       </div>
@@ -38,8 +38,8 @@
       <div id="side_bar" class="span3 affix" data-spy="affix" data-offset-top="75">
   <strong>Getting Started</strong>
   <ul class="nav nav-list">
-    <li><a href="how_it_works.html">How It Works</a></li>
-    <li><a href="methods.html">Methods</a></li>
+    <li><a href="/how_it_works.html">How It Works</a></li>
+    <li><a href="/methods.html">Methods</a></li>
     
       <li><a href="/events.html">Tracking Events</a></li>
     
@@ -50,9 +50,12 @@
 
   <strong>Client Libraries</strong>
   <ul class="nav nav-list">
+    <li><a href="/clients/javascript.html">Javscript</a></li>
+    <!---
     <li><a href="/lib/magento.html">Magento</a></li>
     <li><a href="/lib/ruby.html">Ruby</a></li>
     <li><a href="/lib/php.html">PHP</a></li>
+    --->
   </ul>
 
   <br />
@@ -67,9 +70,37 @@
 
         <p>Welcome! If this is your first time we suggest starting with the <a href="how_it_works.html">how it works</a> page. It will provide a brief introduction to Shopalytic and the basics of our integration and tracking.</p>
 
-<p><a href="methods.html">Methods</a> - Details about the purpose and how to use the various methods available in our client libraries.</p>
+<h2>Installation</h2>
 
-<p><a href="events.html">Tracking Events</a> - The core of the Shopalytic system revolves around the concept of event tracking. The tracking events sections will prodive a list of available events and the properties available to each.</p>
+<h3>Step 1</h3>
+
+<p>Include the following javascript tag in the head of your page. Our libraries are loaded asynchronously, so there&#39;s no need to worry about our tag holding up your page. </p>
+<div class="highlight"><pre><code class="javascript">  <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+    <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="nb">window</span><span class="p">.</span><span class="nx">shopalytic</span><span class="o">=</span><span class="nx">c</span><span class="p">;</span><span class="nx">c</span><span class="p">.</span><span class="nx">_q</span><span class="o">=</span><span class="p">[];</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="nx">c</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">_q</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">a</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span><span class="mi">0</span><span class="p">)))}},</span><span class="nx">b</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;init&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;identify&quot;</span><span class="p">,</span><span class="s2">&quot;track&quot;</span><span class="p">,</span><span class="s2">&quot;alias&quot;</span><span class="p">],</span><span class="nx">d</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">d</span><span class="o">&lt;</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">d</span><span class="o">++</span><span class="p">)</span><span class="nx">a</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">d</span><span class="p">]);</span>
+    <span class="nx">a</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">);</span><span class="nx">a</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="p">;</span><span class="nx">a</span><span class="p">.</span><span class="nx">async</span><span class="o">=!</span><span class="mi">0</span><span class="p">;</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://shopalytic.dev:3000/assets/client/shopalytic.v1.js&quot;</span><span class="p">;</span>
+    <span class="nx">b</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span><span class="nx">b</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">a</span>
+    <span class="p">,</span><span class="nx">b</span><span class="p">)})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">shopalytic</span><span class="o">||</span><span class="p">[]);</span>
+
+    <span class="nx">shopalytic</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="cm">/* Project Token */</span><span class="p">,</span> <span class="p">{</span> <span class="p">...</span> <span class="cm">/* Options */</span> <span class="p">});</span>
+    <span class="nx">shopalytic</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">&#39;page_view&#39;</span><span class="p">);</span>
+  <span class="o">&lt;</span><span class="err">/script&gt;</span>
+</code></pre>
+</div>
+
+<h3>Step 2</h3>
+
+<p>Set the <code>project_token</code>. Your token can be found on the project settings page.</p>
+
+<h3>Step 3</h3>
+
+<p>Familiarize yourself with the <a href="/methods.html">Methods</a> our client library support and when to use them.</p>
+
+<h3>Step 4</h3>
+
+<p>Familiarize yourself with our supported <a href="/events.html">Tracking Events</a> and their paramters.     </p>
 
       </div>
 
@@ -81,7 +112,19 @@
     </div> <!-- /container -->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-40587227-3', 'shopalytic.com');
+      ga('send', 'pageview');
+
+    </script>
+    
   </body>
 </html>

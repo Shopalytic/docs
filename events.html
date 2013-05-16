@@ -17,18 +17,18 @@
     <![endif]-->
 
 
-    <link href="/assets//bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets//bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
-    <link href="/assets//css/pygments.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/assets//css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
-    <link href="/assets//css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link href="/assets/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
   </head>
 
   <body>
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <a href="/"><img src="/assets//images/shopaltyic_docs_logo.png" /></a>
+          <a href="/"><img src="/assets/images/shopaltyic_docs_logo.png" /></a>
           <span class="pull-right back_home"><a href="http://www.shopalytic.com/">Back to Shopalytic ></a></span>
         </div>
       </div>
@@ -38,8 +38,8 @@
       <div id="side_bar" class="span3 affix" data-spy="affix" data-offset-top="75">
   <strong>Getting Started</strong>
   <ul class="nav nav-list">
-    <li><a href="how_it_works.html">How It Works</a></li>
-    <li><a href="methods.html">Methods</a></li>
+    <li><a href="/how_it_works.html">How It Works</a></li>
+    <li><a href="/methods.html">Methods</a></li>
     
   </ul>    
   <br />
@@ -47,15 +47,18 @@
    
   <strong>Tracking Events</strong>
        
-    <ul class="nav nav-list toc"><li><a href="events.html#customer_register">customer_register</a></li><li><a href="events.html#customer_update">customer_update</a></li><li><a href="events.html#cart_add">cart_add</a></li><li><a href="events.html#cart_modify">cart_modify</a></li><li><a href="events.html#order">order</a></li><li><a href="events.html#refund">refund</a></li><li><a href="events.html#shipment">shipment</a></li><li><a href="events.html#shipment_delivered">shipment_delivered</a></li><li><a href="events.html#product_view">product_view</a></li><li><a href="events.html#page_view">page_view</a></li></ul>  
+    <ul class="nav nav-list toc"><li><a href="events.html#account_register">account_register</a></li><li><a href="events.html#account_update">account_update</a></li><li><a href="events.html#cart_add">cart_add</a></li><li><a href="events.html#cart_modify">cart_modify</a></li><li><a href="events.html#order">order</a></li><li><a href="events.html#refund">refund</a></li><li><a href="events.html#shipment">shipment</a></li><li><a href="events.html#shipment_update">shipment_update</a></li><li><a href="events.html#product_view">product_view</a></li><li><a href="events.html#page_view">page_view</a></li></ul>  
     <br />
     
 
   <strong>Client Libraries</strong>
   <ul class="nav nav-list">
+    <li><a href="/clients/javascript.html">Javscript</a></li>
+    <!---
     <li><a href="/lib/magento.html">Magento</a></li>
     <li><a href="/lib/ruby.html">Ruby</a></li>
     <li><a href="/lib/php.html">PHP</a></li>
+    --->
   </ul>
 
   <br />
@@ -68,7 +71,7 @@
         <h1>Tracking Events</h1>
           
 
-        <h2 id="customer_register">customer_register</h2>
+        <h2 id="account_register">account_register</h2>
 
 <p>Called directly after a customer registers for a new account</p>
 
@@ -120,7 +123,7 @@
 </tr>
 </tbody></table>
 
-<h2 id="customer_update">customer_update</h2>
+<h2 id="account_update">account_update</h2>
 
 <p>Update the properties of a customer. Only the fields specified will be updated.</p>
 
@@ -238,18 +241,6 @@
 <td>string</td>
 <td>tshirt-red</td>
 </tr>
-</tbody></table>
-
-<pre>Optional Parameters</pre>
-
-<table><thead>
-<tr>
-<th><em>Parameter</em></th>
-<th><em>Description</em></th>
-<th><em>Type</em></th>
-<th><em>Example</em></th>
-</tr>
-</thead><tbody>
 <tr>
 <td><code>qty</code></td>
 <td>the new quantity. If the original quantity was &quot;5&quot; and the updated quantity was set to &quot;7&quot;, <code>qty</code> would be set to &quot;7&quot;. Set the quantity to &quot;0&quot; if the item has been removed from the cart.</td>
@@ -262,6 +253,18 @@
 <td>decimal</td>
 <td>9.99</td>
 </tr>
+</tbody></table>
+
+<pre>Optional Parameters</pre>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
 <tr>
 <td><code>modified_date</code></td>
 <td>the date and time the cart item was modified. The timestamp should be the number of seconds after the UTC Unix epoch. If a <code>modified_date</code> is not supplied we will default to the time the event was called.</td>
@@ -295,12 +298,6 @@
 <td>id used to identify the shopping cart (see <a href="#cart_add">cart_add</a>. If you are importing records or not using the <a href="#cart_add">cart_add</a> functionality you can set the <code>cart_id</code> to the same value as <code>order_id</code>.</td>
 <td>string</td>
 <td>6789</td>
-</tr>
-<tr>
-<td><code>order_date</code></td>
-<td>date and time the order was placed</td>
-<td>timestamp</td>
-<td>1365698517</td>
 </tr>
 <tr>
 <td><code>total</code></td>
@@ -368,6 +365,12 @@
 <th><em>Example</em></th>
 </tr>
 </thead><tbody>
+<tr>
+<td><code>order_date</code></td>
+<td>date and time the order was placed. The timestamp should be the number of seconds after the UTC Unix epoch. If no <code>order_date</code> is specified we will default to the time <code>order</code> was called.</td>
+<td>timestamp</td>
+<td>1365698517</td>
+</tr>
 <tr>
 <td><code>billing</code></td>
 <td>dictionary with details about the billing location</td>
@@ -460,7 +463,7 @@
 </tr>
 <tr>
 <td><code>total_shipping</code></td>
-<td>the of shipping the order</td>
+<td>the cost of shipping the order</td>
 <td>decimal</td>
 <td>9.99</td>
 </tr>
@@ -472,9 +475,15 @@
 </tr>
 <tr>
 <td><code>discounts</code></td>
-<td>array of dictionaries listing any discounts applied to the order. In the case where there are dynamic coupon codes that can only be used once, we suggest setting the <code>code</code> to the name of the group of coupons.</td>
+<td>array of dictionaries listing any discounts applied to the order. In the case where there are dynamic coupon codes that can only be used once, we suggest setting the <code>code</code> to the name of the group of coupons. <code>total_discounts</code> must be set when using <code>discounts</code>.</td>
 <td>array of dict</td>
 <td></td>
+</tr>
+<tr>
+<td><code>total_discounts</code></td>
+<td>the sum of all the discounts applied to the order. Must be set in conjunction with <code>discounts</code>.</td>
+<td>decimal</td>
+<td>12.50</td>
 </tr>
 <tr>
 <td></td>
@@ -497,7 +506,7 @@
 </tbody></table>
 
 <p><h2 id="refund">refund</h2>
-Called when an order is partially or fully refunded. If the order is being fully refunded the only required fields are <code>order_id</code> and <code>partial</code> (set to false).</p>
+Called when an order is partially or fully refunded. If the order is being fully refunded the only required fields are <code>order_id</code> and setting <code>refund_type = &#39;full&#39;</code>.</p>
 
 <pre>Required Parameters</pre> 
 
@@ -516,13 +525,13 @@ Called when an order is partially or fully refunded. If the order is being fully
 <td>123456</td>
 </tr>
 <tr>
-<td><code>partial</code></td>
-<td>whether the refund is for the full or a partial amount, When refunding the entire order set to false. The only other required field when doing a full refund is <code>order_id</code>.</td>
-<td>bool</td>
-<td>true</td>
+<td><code>refund_type</code></td>
+<td>whether the refund is a <code>partial</code> or <code>full</code> refund. The only required fields when doing a full refund is <code>order_id</code>.</td>
+<td>full or partial</td>
+<td>full</td>
 </tr>
 <tr>
-<td><code>refund_total</code></td>
+<td><code>total_refund</code></td>
 <td>the total amount being refunded, including the refunded amounts for subtotal, tax, shipping and discounts.</td>
 <td>decimal</td>
 <td>59.04</td>
@@ -826,9 +835,9 @@ New Zealand Post</p>
 
 </div>
 
-<h2 id="shipment_delivered">shipment_delivered</h2>
+<h2 id="shipment_update">shipment_update</h2>
 
-<p>Called to update a shipment with a delivery date and time. If you&#39;re using a carrier code that supports automated data population (see: <a href="#carriers">Shipping Carrier Codes</a>) then you don&#39;t need to call <code>shipment_delivered</code>.</p>
+<p>Called to update a shipments shipping or delivery time. If you&#39;re using a carrier code that has automated date population (see: <a href="#carriers">Shipping Carrier Codes</a>) then you don&#39;t need to call <code>shipment_update</code>.</p>
 
 <pre>Required Parameters</pre> 
 
@@ -851,6 +860,12 @@ New Zealand Post</p>
 <td>the shipment id</td>
 <td>string</td>
 <td>12345_1</td>
+</tr>
+<tr>
+<td><code>date_shipped</code></td>
+<td>the date the shipment was sent. The timestamp should be the number of seconds after the UTC Unix epoch.</td>
+<td>timestamp</td>
+<td>1365698517</td>
 </tr>
 <tr>
 <td><code>date_delivered</code></td>
@@ -892,12 +907,6 @@ New Zealand Post</p>
 <td>decimal</td>
 <td>29.99</td>
 </tr>
-<tr>
-<td><code>logged_in</code></td>
-<td>whether the customer is logged in or not</td>
-<td>bool</td>
-<td>true</td>
-</tr>
 </tbody></table>
 
 <pre>Optional Parameters</pre> 
@@ -915,6 +924,12 @@ New Zealand Post</p>
 <td>an array of product categories</td>
 <td>array</td>
 <td>[&#39;shirts&#39;, &#39;apparel&#39;]</td>
+</tr>
+<tr>
+<td><code>logged_in</code></td>
+<td>whether the customer is logged in or not</td>
+<td>bool</td>
+<td>true</td>
 </tr>
 </tbody></table>
 
@@ -944,6 +959,18 @@ New Zealand Post</p>
 <td>string</td>
 <td><a href="http://www.google.com">http://www.google.com</a></td>
 </tr>
+</tbody></table>
+
+<pre>Optional Parameters</pre> 
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Type</em></th>
+<th><em>Example</em></th>
+</tr>
+</thead><tbody>
 <tr>
 <td><code>logged_in</code></td>
 <td>whether the customer is logged in or not</td>
@@ -962,7 +989,19 @@ New Zealand Post</p>
     </div> <!-- /container -->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-40587227-3', 'shopalytic.com');
+      ga('send', 'pageview');
+
+    </script>
+    
   </body>
 </html>
