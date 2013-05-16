@@ -20,6 +20,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+h4 [class^="icon-"], h4 [class*=" icon-"] {
+    vertical-align: baseline;
+    margin-left: 2px;
+}   
+
 a {
   color: #4cb4e8;
   -webkit-transition: all 0.3s;
@@ -38,7 +43,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   color: #999999;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
   margin: 0 0 15px;
 }
 
@@ -51,6 +56,21 @@ h2 {
   margin-top: 40px;
   color: #00B3EC;
 }
+
+h2 {
+  font-size: 25px;
+  margin-top: 40px;
+  color: #00B3EC;
+}
+
+h4 {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #BBBBBB;
+}
+
+h4 a { color: #BBBBBB; }
+h4 a:hover { color: #a3a3a3; }
 
 pre, code {
   color: #ccc;
