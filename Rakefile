@@ -5,11 +5,12 @@ task :publish do
     next
   end
 
-  puts 'Checkout out source'
-  system 'git checkout source branch'
+  puts 'Checkout out source branch'
+  system 'git checkout source'
 
   puts 'Building jekyll to .build/'
-  system 'jekyll .build --no-server --no-auto'
+  system 'jekyll build'
+  system 'cp -r _site .build'
 
   puts 'Checking out gh-pages branch'
   system 'git checkout gh-pages'
