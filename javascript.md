@@ -15,7 +15,7 @@ Include the following javascript tag in the head of your page. Our libraries are
     c._q.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init",
     "identify","track","alias"],d=0;d<b.length;d++)a(b[d]);
     a=document.createElement("script");a.type="text/javascript";a.async=!0;
-    a.src="http://shopalytic.dev:3000/assets/client/shopalytic.v1.js";
+    a.src="//duxxj2y1vdlze.cloudfront.net/assets/client/shopalytic.v1.js";
     b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a
     ,b)})(window.shopalytic||[]);
 
