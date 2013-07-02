@@ -230,3 +230,4 @@ Called on each page view.
 *Parameter* | *Description* | *Type* | *Example*
 --- | --- | --- | ---         
 `logged_in` | whether the customer is logged in or not | bool | true
+`page_type` | a tag for the specific page, useful for tracking funnel flow | string | checkout-flow-page1
